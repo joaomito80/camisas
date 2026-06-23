@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Império | Camisetas & Tênis</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Raleway:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:        #C9A84C;
+      --gold-light:  #F0D080;
+      --gold-dim:    #8A6A28;
+      --bg:          #0A0A0A;
+      --bg2:         #111111;
+      --bg3:         #161616;
+      --bg4:         #1C1C1C;
+      --text:        #E8E8E8;
+      --text-muted:  #888;
+      --border:      rgba(201,168,76,0.25);
+      --border-hot:  rgba(201,168,76,0.6);
+      --wpp:         #25D366;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Raleway', sans-serif;
+      font-weight: 400;
+      overflow-x: hidden;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg2); }
+    ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 3px; }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px;
+      height: 72px;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 1.7rem;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      background: linear-gradient(135deg, var(--gold-dim), var(--gold-light), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      transition: color .3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-wpp {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--wpp);
+      color: #fff;
+      padding: 8px 18px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      transition: opacity .3s;
+    }
+    .nav-wpp:hover { opacity: .85; }
+    .nav-wpp svg { width: 16px; height: 16px; fill: #fff; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 60%, rgba(201,168,76,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 20% 30%, rgba(201,168,76,0.04) 0%, transparent 60%);
+    }
+    .hero-crown {
+      font-size: 3rem; margin-bottom: 16px; opacity: .7;
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+    .hero h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      line-height: 1;
+      background: linear-gradient(165deg, var(--gold-dim) 0%, var(--gold-light) 45%, var(--gold) 75%, var(--gold-dim) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+    }
+    .hero-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      font-style: italic;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      margin-bottom: 40px;
+    }
+    .hero-divider {
+      width: 120px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 0 auto 40px;
+    }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+
+    .btn-gold {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 32px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      background: transparent;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background .3s, color .3s;
+    }
+    .btn-gold:hover { background: var(--gold); color: var(--bg); }
+    .btn-solid {
+      background: var(--gold);
+      color: var(--bg);
+    }
+    .btn-solid:hover { background: var(--gold-light); }
+
+    /* ── SECTION HEADER ── */
+    .section-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .section-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--text);
+    }
+    .section-line {
+      width: 80px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 16px auto 0;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 96px 0; }
+    .container { max-width: 1400px; margin: 0 auto; padding: 0 32px; }
+
+    /* ── CATEGORIES BAR (Camisetas) ── */
+    .cat-tabs {
+      display: flex; gap: 0; flex-wrap: wrap;
+      border: 1px solid var(--border);
+      margin-bottom: 56px;
+      overflow: hidden;
+    }
+    .cat-tab {
+      flex: 1; min-width: 140px;
+      padding: 14px 20px;
+      text-align: center;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      background: var(--bg2);
+      border: none;
+      border-right: 1px solid var(--border);
+      cursor: pointer;
+      transition: all .3s;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 600;
+    }
+    .cat-tab:last-child { border-right: none; }
+    .cat-tab.active, .cat-tab:hover {
+      background: var(--gold);
+      color: var(--bg);
+    }
+
+    /* ── PRODUCT GRID ── */
+    .product-section { display: none; }
+    .product-section.active { display: block; }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 24px;
+    }
+
+    .product-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: border-color .3s, transform .3s;
+      cursor: pointer;
+    }
+    .product-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+    }
+
+    .product-img-wrap {
+      position: relative;
+      width: 100%; padding-top: 120%;
+      background: var(--bg3);
+      overflow: hidden;
+    }
+    .product-img-wrap img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform .5s;
+    }
+    .product-card:hover .product-img-wrap img { transform: scale(1.05); }
+
+    /* Placeholder para foto */
+    .img-placeholder {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 10px;
+      color: var(--gold-dim);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .img-placeholder .icon { font-size: 2.2rem; opacity: .4; }
+
+    .product-info { padding: 16px; }
+    .product-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--text);
+      margin-bottom: 4px;
+      min-height: 38px;
+    }
+    .product-price-card {
+      font-size: 0.95rem;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    /* Seletor de tamanho – Camisetas */
+    .size-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .size-options { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+    .size-btn {
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 0.68rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .2s;
+      font-family: 'Raleway', sans-serif;
+    }
+    .size-btn:hover, .size-btn.active {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(201,168,76,0.08);
+    }
+
+    /* Estilos de Customização */
+    .custom-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin: 12px 0 6px;
+    }
+    .custom-select {
+      width: 100%;
+      padding: 8px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.75rem;
+      margin-bottom: 10px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .custom-select:focus { border-color: var(--gold); }
+    .custom-inputs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .custom-inputs input {
+      flex: 1;
+      width: 100%;
+      padding: 8px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.75rem;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .custom-inputs input:focus { border-color: var(--gold); }
+
+    /* Seletor de numeração – Tênis */
+    .num-options { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 12px; }
+    .num-btn {
+      padding: 5px 9px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 0.65rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .2s;
+      font-family: 'Raleway', sans-serif;
+    }
+    .num-btn:hover, .num-btn.active {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(201,168,76,0.08);
+    }
+
+    .wpp-btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%;
+      padding: 11px;
+      background: var(--wpp);
+      color: #fff;
+      border: none;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity .3s;
+      text-decoration: none;
+    }
+    .wpp-btn:hover { opacity: .85; }
+    .wpp-btn svg { width: 15px; height: 15px; fill: #fff; flex-shrink: 0; }
+
+    /* ── DIVIDER ORNAMENTAL ── */
+    .ornament-divider {
+      display: flex; align-items: center; gap: 16px;
+      margin: 72px 0;
+    }
+    .ornament-divider::before, .ornament-divider::after {
+      content: ''; flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-hot));
+    }
+    .ornament-divider::after { background: linear-gradient(270deg, transparent, var(--border-hot)); }
+    .ornament-text {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.4em;
+      color: var(--gold-dim);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* ── BANNER WHATSAPP ── */
+    .wpp-banner {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .wpp-banner-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 32px; flex-wrap: wrap;
+      padding: 48px 32px;
+    }
+    .wpp-banner h2 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 600;
+      color: var(--text);
+    }
+    .wpp-banner p { color: var(--text-muted); font-size: .9rem; margin-top: 6px; }
+    .wpp-big-btn {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 16px 36px;
+      background: var(--wpp);
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      border-radius: 4px;
+      white-space: nowrap;
+      transition: opacity .3s;
+    }
+    .wpp-big-btn:hover { opacity: .85; }
+    .wpp-big-btn svg { width: 22px; height: 22px; fill: #fff; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 48px 32px;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 1.8rem;
+      font-weight: 900;
+      letter-spacing: 0.2em;
+      background: linear-gradient(135deg, var(--gold-dim), var(--gold-light), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+    }
+    .footer-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 28px;
+    }
+    .footer-links { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; margin-bottom: 32px; }
+    .footer-links a { color: var(--text-muted); text-decoration: none; font-size: .8rem; letter-spacing: .1em; transition: color .3s; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-copy { font-size: .72rem; color: #444; letter-spacing: .1em; }
+
+    /* ── STICKY WPP FLOAT ── */
+    .float-wpp {
+      position: fixed; bottom: 28px; right: 28px; z-index: 999;
+      width: 58px; height: 58px;
+      background: var(--wpp);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 24px rgba(37,211,102,.35);
+      text-decoration: none;
+      transition: transform .3s;
+    }
+    .float-wpp:hover { transform: scale(1.1); }
+    .float-wpp svg { width: 28px; height: 28px; fill: #fff; }
+
+    /* ── SCROLL TO TOP ── */
+    #scrollTop {
+      position: fixed; bottom: 28px; left: 28px; z-index: 999;
+      width: 44px; height: 44px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      color: var(--gold);
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: none;
+      align-items: center; justify-content: center;
+      transition: border-color .3s;
+    }
+    #scrollTop:hover { border-color: var(--gold); }
+    #scrollTop.visible { display: flex; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .product-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; }
+      .container { padding: 0 16px; }
+      section { padding: 64px 0; }
+      .cat-tab { font-size: 0.65rem; padding: 12px 10px; min-width: 100px; }
+      .modal-body { flex-direction: column; gap: 20px; }
+    }
+
+    /* ── BG TEXTURE ── */
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A84C' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+    * { position: relative; }
+    nav, .float-wpp, #scrollTop { z-index: 1000; }
+
+    /* ── SUB CATEGORY HEADING ── */
+    .sub-cat-heading {
+      display: flex; align-items: center; gap: 16px;
+      margin: 48px 0 24px;
+    }
+    .sub-cat-heading h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+    .sub-cat-heading::after {
+      content: '';
+      flex: 1; height: 1px;
+      background: var(--border);
+    }
+
+    /* About strip */
+    .about-strip {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 56px 0;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+      text-align: center;
+    }
+    .about-item .icon { font-size: 2rem; margin-bottom: 12px; }
+    .about-item h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .about-item p { font-size: .8rem; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── MODAL GALERIA DE FOTOS COM ZOOM E DESCRIÇÃO ── */
+    .modal {
+      display: none; position: fixed; inset: 0; z-index: 2000;
+      background: rgba(10,10,10,0.95); backdrop-filter: blur(10px);
+      align-items: center; justify-content: center; padding: 20px;
+    }
+    .modal.active { display: flex; }
+    .modal-content {
+      background: var(--bg2); border: 1px solid var(--border);
+      max-width: 900px; width: 100%; position: relative; padding: 28px;
+      max-height: 90vh; overflow-y: auto;
+    }
+    .close-modal {
+      position: absolute; top: 12px; right: 20px; font-size: 2rem;
+      color: var(--text-muted); cursor: pointer; transition: color .3s; z-index: 10;
+    }
+    .close-modal:hover { color: var(--gold); }
+    .modal-body { display: flex; gap: 36px; }
+    
+    .modal-gallery { flex: 1.1; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+    
+    /* Container da Imagem Principal com Suporte a Zoom */
+    .modal-main-img-wrap { 
+      width: 100%; aspect-ratio: 1/1.2; background: var(--bg3); 
+      overflow: hidden; cursor: zoom-in; position: relative;
+    }
+    .modal-main-img-wrap img { 
+      width: 100%; height: 100%; object-fit: cover; 
+      transition: transform 0.1s ease-out; transform-origin: center center;
+    }
+    
+    .modal-thumbs { display: flex; gap: 12px; }
+    .modal-thumb {
+      flex: 1; aspect-ratio: 1/1; background: var(--bg3); cursor: pointer;
+      border: 1px solid var(--border); overflow: hidden; transition: border-color .3s;
+    }
+    .modal-thumb:hover, .modal-thumb.active { border-color: var(--gold); }
+    .modal-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    
+    .modal-info { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .modal-title { font-family: 'Cinzel', serif; font-size: 1.6rem; color: var(--text); margin-bottom: 8px; line-height: 1.3; }
+    .modal-price { font-size: 1.3rem; color: var(--gold); font-weight: 700; margin-bottom: 16px; }
+    
+    /* Estilo Bonito para a Descrição */
+    .modal-description {
+      font-size: 0.88rem; color: var(--text-muted); line-height: 1.6;
+      margin-bottom: 24px; padding-top: 16px; border-top: 1px solid rgba(201,168,76,0.1);
+      font-family: 'Raleway', sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">IMPÉRIO</a>
+  <ul class="nav-links">
+    <li><a href="#camisetas">Camisetas</a></li>
+    <li><a href="#tenis">Tênis</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+  <a href="https://wa.me/5518996653898" target="_blank" class="nav-wpp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.106.546 4.087 1.5 5.814L0 24l6.335-1.484A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.797 9.797 0 01-5.031-1.388l-.361-.214-3.741.876.935-3.63-.235-.373A9.79 9.79 0 012.182 12C2.182 6.58 6.58 2.182 12 2.182S21.818 6.58 21.818 12 17.42 21.818 12 21.818z"/></svg>
+    WhatsApp
+  </a>
+</nav>
+
+<section class="hero" id="inicio">
+  <div class="hero-crown">♛</div>
+  <div class="hero-eyebrow">Moda de Elite</div>
+  <h1>IMPÉRIO</h1>
+  <p class="hero-sub">Camisetas &amp; Tênis que definem estilo</p>
+  <div class="hero-divider"></div>
+  <div class="hero-actions">
+    <a href="#camisetas" class="btn-gold btn-solid">Ver Camisetas</a>
+    <a href="#tenis" class="btn-gold">Ver Tênis</a>
+  </div>
+</section>
+
+<div class="about-strip">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-item">
+        <div class="icon">👑</div>
+        <h4>Qualidade Imperial</h4>
+        <p>Produtos selecionados com o mais alto padrão de qualidade</p>
+      </div>
+      <div class="about-item">
+        <div class="icon">📦</div>
+        <h4>Envio Rápido</h4>
+        <p>Entregas para todo o Brasil com agilidade e segurança</p>
+      </div>
+      <div class="about-item">
+        <div class="icon">💬</div>
+        <h4>Atendimento VIP</h4>
+        <p>Suporte exclusivo via WhatsApp para tirar todas as dúvidas</p>
+      </div>
+      <div class="about-item">
+        <div class="icon">✅</div>
+        <h4>Compra Segura</h4>
+        <p>Satisfação garantida em cada pedido realizado</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="camisetas" style="background: var(--bg);">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Coleção</div>
+      <h2 class="section-title">CAMISETAS</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="cat-tabs" id="shirtTabs">
+      <button class="cat-tab active" onclick="switchShirtCat('selecoes', this)">Seleções Copa</button>
+      <button class="cat-tab" onclick="switchShirtCat('brasileirao', this)">Brasileirão</button>
+      <button class="cat-tab" onclick="switchShirtCat('europeus', this)">Times Europeus</button>
+      <button class="cat-tab" onclick="switchShirtCat('libertadores', this)">Libertadores</button>
+      <button class="cat-tab" onclick="switchShirtCat('retro', this)">Retrô</button>
+      <button class="cat-tab" onclick="switchShirtCat('streetwear', this)">Streetwear</button>
+    </div>
+
+    <div class="product-section active" id="cat-selecoes">
+      <div class="sub-cat-heading"><h3>Seleções da Copa do Mundo</h3></div>
+      <div class="product-grid" id="grid-selecoes"></div>
+    </div>
+
+    <div class="product-section" id="cat-brasileirao">
+      <div class="sub-cat-heading"><h3>Times do Brasileirão</h3></div>
+      <div class="product-grid" id="grid-brasileirao"></div>
+    </div>
+
+    <div class="product-section" id="cat-europeus">
+      <div class="sub-cat-heading"><h3>Times Europeus</h3></div>
+      <div class="product-grid" id="grid-europeus"></div>
+    </div>
+
+    <div class="product-section" id="cat-libertadores">
+      <div class="sub-cat-heading"><h3>Libertadores</h3></div>
+      <div class="product-grid" id="grid-libertadores"></div>
+    </div>
+
+    <div class="product-section" id="cat-retro">
+      <div class="sub-cat-heading"><h3>Camisetas Retrô</h3></div>
+      <div class="product-grid" id="grid-retro"></div>
+    </div>
+
+    <div class="product-section" id="cat-streetwear">
+      <div class="sub-cat-heading"><h3>Streetwear</h3></div>
+      <div class="product-grid" id="grid-streetwear"></div>
+    </div>
+  </div>
+</section>
+
+<div class="ornament-divider container"><span class="ornament-text">Império — Excelência em Cada Detalhe</span></div>
+
+<section id="tenis" style="background: var(--bg);">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Coleção</div>
+      <h2 class="section-title">TÊNIS</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="product-grid" id="grid-tenis"></div>
+  </div>
+</section>
+
+<div class="wpp-banner" id="contato">
+  <div class="container">
+    <div class="wpp-banner-inner">
+      <div>
+        <h2>Ficou com alguma dúvida?</h2>
+        <p>Fale diretamente com a gente pelo WhatsApp. Resposta rápida garantida!</p>
+      </div>
+      <a href="https://wa.me/5518996653898" target="_blank" class="wpp-big-btn">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.106.546 4.087 1.5 5.814L0 24l6.335-1.484A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.797 9.797 0 01-5.031-1.388l-.361-.214-3.741.876.935-3.63-.235-.373A9.79 9.79 0 012.182 12C2.182 6.58 6.58 2.182 12 2.182S21.818 6.58 21.818 12 17.42 21.818 12 21.818z"/></svg>
+        Chamar no WhatsApp
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">IMPÉRIO</div>
+  <div class="footer-tagline">Onde o luxo encontra o streetwear.</div>
+  <div class="footer-links">
+    <a href="#camisetas">Camisetas</a>
+    <a href="#tenis">Tênis</a>
+    <a href="#contato">Suporte</a>
+  </div>
+  <p class="footer-copy">&copy; 2026 Império Store. Todos os direitos reservados. Design Exclusivo.</p>
+</footer>
+
+<a href="https://wa.me/5518996653898" target="_blank" class="float-wpp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.106.546 4.087 1.5 5.814L0 24l6.335-1.484A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.797 9.797 0 01-5.031-1.388l-.361-.214-3.741.876.935-3.63-.235-.373A9.79 9.79 0 012.182 12C2.182 6.58 6.58 2.182 12 2.182S21.818 6.58 21.818 12 17.42 21.818 12 21.818z"/></svg>
+</a>
+
+<button id="scrollTop" title="Voltar ao Topo">▲</button>
+
+<div class="modal" id="productModal" onclick="closeModal(event)">
+  <div class="modal-content">
+    <span class="close-modal" onclick="document.getElementById('productModal').classList.remove('active')">&times;</span>
+    <div class="modal-body">
+      <div class="modal-gallery">
+        <div class="modal-main-img-wrap" id="modalZoomContainer">
+          <img id="modalMainImg" src="" alt="Produto Principal">
+        </div>
+        <div class="modal-thumbs" id="modalThumbsContainer"></div>
+      </div>
+      <div class="modal-info">
+        <h2 class="modal-title" id="modalTitle"></h2>
+        <div class="modal-price" id="modalPrice"></div>
+        <p class="modal-description" id="modalDescription"></p>
+        <div id="modalDynamicOptions"></div>
+        <a href="#" id="modalWppBtn" target="_blank" class="wpp-btn" style="margin-top:20px;"></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const WPP_NUMBER = '5518996653898';
+  const SHIRT_SIZES = ['PP', 'P', 'M', 'G', 'GG', 'XG'];
+  const SHOE_SIZES = ['38','39','40','41','42','43','44','45'];
+
+  const PRODUCTS = {
+    selecoes: [ { name: '26/27 Brazil 2026 World Cup Patch', img: 'img2/c43e2aaa.png', img2: 'peitas 2/copa2/brasa.jpg', img3: 'peitas3/copa3/brasa2.jpg', price: 'R$129,90', description: 'Manto sagrado da Seleção Brasileira para a temporada 26/27 com patch oficial da Copa do Mundo. Acabamento impecável em tecido tecnológico antitranspirante, perfeito para colecionadores e torcedores exigentes.' },
+      { name: '26/27 Brazil 2026 World Cup Patch Modelo 2', img: 'img2/30cf9bf1.png', img2: 'peitas 2/copa2/92ac75dd.jpg', img3: 'peitas3/copa3/0e704bce.jpg', price: 'R$129,90' },
+      { name: '26/27 Argentina 2026 World Cup Patch', img: 'img2/4c9e2a05.png', img2: 'peitas3/copa3/d9e44142.jpg', img3: 'peitas 2/copa2/12320035.jpg', price: 'R$129,90' },
+      { name: '26/27 Spain 2026 World Cup Patch', img: 'img2/096103bc.png', img2: 'peitas 2/copa2/1.jpg', img3: 'peitas3/copa3/e0102e3f.jpg', price: 'R$129,90' },
+      { name: '2026 Belgium Home Jersey ', img: 'img2/54673a1a.jpg', img2: 'peitas3/copa3/5b030bd7.jpg', img3: 'peitas 2/copa2/b6267c12.jpg', price: 'R$129,90' },
+      { name: '2026 Norway Home Jersey', img: 'img2/7dd6784a.jpg', img2: 'peitas 2/copa2/ba82ae68.jpg', img3: 'peitas3/copa3/237dd740.jpg', price: 'R$129,90' },
+      { name: '2026 Mexico Home Jersey', img: 'img2/c47099f8.jpg', img2: 'peitas 2/copa2/mexico2.jpg', img3: 'peitas3/copa3/07ebd025mexico3.jpg', price: 'R$129,90' },
+      { name: '2026 USA Home Jersey', img: 'img2/bf654a6f.jpg', img2: 'peitas 2/copa2/94fa7f87.jpg', img3: 'peitas3/copa3/5ee17340.jpg', price: 'R$129,90' },
+      { name: '26/27 Germany 2026 World Cup Patch', img: 'img2/c1b78959.png', img2: 'peitas3/copa3/bd1a4069.jpg', img3: 'peitas 2/copa2/90774fed.jpg', price: 'R$129,90' },
+      { name: '2026 Morocco Home Jersey ', img: 'img2/a52601f5.jpg', img2: 'peitas 2/copa2/marrocos.jpg', img3: 'peitas3/copa3/marrocos.jpg', price: 'R$129,90' },
+      { name: '26/27 France 2026 World Cup Patch', img: 'img2/49fc53f5.png', img2: 'peitas3/copa3/6.jpg', img3: 'peitas 2/copa2/3533b6d9.jpg', price: 'R$129,90' },
+      { name: '2026 Portugal 2026 World Cup Patch', img: 'img2/f9e5ae6a.png', img2: 'peitas3/copa3/7.jpg', img3: 'peitas 2/copa2/77.jpg', price: 'R$129,90' },
+      { name: '26/27 England 2026 World Cup Patch', img: 'img2/c4af95ea.png', img2: 'peitas3/copa3/88.jpg', img3: 'peitas 2/copa2/8.jpg', price: 'R$129,90' },
+      { name: '2026 Colombia Home Jersey', img: 'img2/520571cc.jpg', img2: 'peitas3/copa3/99.jpg', img3: 'peitas 2/copa2/9.jpg', price: 'R$129,90' },
+      { name: '2026/27 Canada Home Jersey', img: 'img2/8f487226.png', img2: 'peitas 2/copa2/canada.jpg', img3: 'peitas3/copa3/canad.jpg', price: 'R$129,90' },
+      { name: '2026/27 Croatia home Jersey', img: 'img2/008f7216.jpg', img2: 'peitas3/copa3/10.jpg', img3: 'peitas 2/copa2/10.jpg', price: 'R$129,90' },
+      { name: '2026 Scotland Home Jersey', img: 'img2/faa23d64.jpg', img2: 'peitas3/copa3/11.jpg', img3: 'peitas 2/copa2/111.jpg', price: 'R$129,90' },
+      { name: '2026 Japan Away Jersey', img: 'img2/ebde0607.jpg', img2: 'peitas3/copa3/122.jpg', img3: 'peitas 2/copa2/12.jpg', price: 'R$129,90' },
+      { name: '2026 Netherlands Home Jerseys', img: 'img2/ea52158d.jpg', img2: 'peitas3/copa3/133.jpg', img3: 'peitas 2/copa2/13.jpg', price: 'R$129,90' },
+      { name: '2026 Senegal Away Jerseys', img: 'img2/8af19bda.jpg', img2: 'peitas3/copa3/144.jpg', img3: 'peitas3/copa3/14.jpg', price: 'R$129,90' }
+    ],
+    brasileirao: [
+      { name: '2026/27 São Paulo Home Jersey', img: 'img3/74300dfa.jpg', img2: 'peitas3/brasileirao3/1.jpg', img3: 'peitas 2/brasileirao2/11.jpg', price: 'R$129,90' },
+      { name: '2026/27 Corinthians Home Jersey All Sponsors', img: 'img3/3003449d.png', img2: 'peitas3/brasileirao3/2.jpg', img3: 'peitas 2/brasileirao2/122.jpg', price: 'R$129,90' },
+      { name: '2026/27 Flamengo Home All Sponsors', img: 'img3/b4f3e953.png', img2: 'peitas3/brasileirao3/33.png', img3: 'peitas 2/brasileirao2/3.png', price: 'R$129,90' },
+      { name: '2026/27 Palmeiras Home Jerse', img: 'img3/385271d6.jpg', img2: 'peitas3/brasileirao3/44.jpg', img3: 'peitas 2/brasileirao2/44.jpg', price: 'R$129,90' },
+      { name: '2026/27 Santos home All Sponsors', img: 'img3/5957710e.png', img2: 'peitas3/brasileirao3/55.jpeg', img3: 'peitas 2/brasileirao2/5.png', price: 'R$129,90' },
+      { name: '2026/27 Fluminense Home All Sponsors', img: 'img3/50646063.png', img2: 'peitas 2/brasileirao2/66.png', img3: 'peitas3/brasileirao3/6.png', price: 'R$129,90' },
+      { name: '2026/27 Vasco da Gama Home Jersey', img: 'img3/41560246.jpg', img2: 'peitas 2/brasileirao2/vascu.jpg', img3: 'peitas 2/brasileirao2/77.jpg', price: 'R$129,90' },
+      { name: '2025/26 Botafogo Home Jersey', img: 'img3/c71f157c.jpg', img2: 'peitas3/brasileirao3/8.jpg', img3: 'peitas3/brasileirao3/88.jpg', price: 'R$129,90' },
+      { name: '2026/27 Bahia Away Jersey', img: 'img3/d03e1914.png', img2: 'peitas3/brasileirao3/9.png', img3: 'peitas 2/brasileirao2/90.jpg', price: 'R$129,90' },
+      { name: '2026/27 Atlético Mineiro Home Jersey', img: 'img3/b16ad044.jpg', img2: 'peitas 2/brasileirao2/10.jpg', img3: 'peitas3/brasileirao3/100.jpg', price: 'R$129,90' },
+      { name: '2026/27 Cruzeiro Home All Sponsors', img: 'img3/5445ff99.png', img2: 'peitas3/brasileirao3/111.png', img3: 'peitas 2/brasileirao2/1111.jpg', price: 'R$129,90' },
+      { name: '2026/27 Grêmio Home Jersey', img: 'img3/b2a33d02.png', img2: 'peitas 2/brasileirao2/13.png', img3: 'peitas 2/brasileirao2/133.png', price: 'R$129,90' },
+      { name: '2026/27 S.C Internacional Home All Sponsors', img: 'img3/e2a72a0a.png', img2: 'peitas3/brasileirao3/iter.png', img3: 'peitas3/brasileirao3/iter2.png', price: 'R$129,90' },
+      { name: '2026/27 Athletico Paranaense Home Jersey', img: 'img3/61177499.jpg', img2: 'peitas3/brasileirao3/ara2.jpg', img3: 'peitas3/brasileirao3/aranae.jpg', price: 'R$129,90' },
+      { name: '2026/27 Remo Home Jersey', img: 'img3/d1c2a4af.jpg', img2: 'peitas3/brasileirao3/remu.jpg', img3: 'peitas3/brasileirao3/rem 2.jpg', price: 'R$129,90' },
+      { name: '2026/27 RB Bragantino Home Jersey', img: 'img3/62c382f6.jpg', img2: 'peitas3/brasileirao3/red.jpg', img3: 'peitas3/brasileirao3/red2.jpg', price: 'R$129,90' },
+      { name: '2026/27 Chapecoense Home Jersey', img: 'img3/6cc796c1.jpg', img2: 'peitas3/brasileirao3/c2.jpg', img3: 'peitas3/brasileirao3/chape.jpg', price: 'R$129,90' },
+      { name: '2025/26 Fortaleza Home Jersey', img: 'img3/82499b65.jpg', img2: 'peitas3/brasileirao3/fort2.jpg', img3: 'peitas3/brasileirao3/fortaleza.jpg', price: 'R$129,90' },
+      { name: '2026/27 Sport Club Recife Home Jersey', img: 'peitas3/brasileirao3/burice.png', img2: 'peitas3/brasileirao3/bu2.jpg', img3: 'peitas3/brasileirao3/bu3.jpg', price: 'R$129,90' },
+      { name: '2025/26 Corinthians III All SPonsors', img: 'img3/82dda2a4.png', img2: 'peitas3/brasileirao3/coco.png', img3: 'peitas3/brasileirao3/coco2.jpeg', price: 'R$129,90' }
+    ],
+    europeus: [
+      { name: '2025/26 M-U Home Jersey', img: 'img4/f540879c.jpg', img2: 'peitas3/euro3/unite.jpg', img3: 'peitas3/euro3/unite2.jpg', price: 'R$129,90' },
+      { name: '2026/27 Manchester City Home Jersey', img: 'img4/cf036da6.jpg', img2: 'peitas3/euro3/city.jpg', img3: 'peitas3/euro3/city2.jpg', price: 'R$129,90' },
+      { name: '2026/27 Arsenal Home Jersey', img: 'img4/ff6090fd.png', img2: 'peitas3/euro3/guns.jpg', img3: 'peitas3/euro3/guns2.jpg', price: 'R$129,90' },
+      { name: '2025/26 Chelsea home jersey', img: 'img4/95b75401.jpg', img2: 'peitas3/euro3/chel.jpg', img3: 'peitas3/euro3/chel2.jpg', price: 'R$129,90' },
+      { name: '2025/26 Tottenham Hotspur Home Jersey', img: 'img4/51d5953b.jpg', img2: 'peitas3/euro3/tote.jpg', img3: 'peitas3/euro3/tote2.jpg', price: 'R$129,90' },
+      { name: '2026/27 Real Madrid Home Jersey', img: 'img4/354a4927.jpg', img2: 'peitas3/euro3/real.jpg', img3: 'peitas3/euro3/real2.jpg', price: 'R$129,90' },
+      { name: '2026/27 Barcelona Home Jersey', img: 'img4/a6692a5a.png', img2: 'peitas3/euro3/bar.jpg', img3: 'peitas3/euro3/bar2.jpg', price: 'R$129,90' },
+      { name: '2025/26 Atletico Madrid Home Jersey', img: 'img4/acce23c4.jpg', img2: 'peitas3/euro3/atle.jpg', img3: 'peitas3/euro3/atle2.jpg', price: 'R$129,90' },
+      { name: '2025/26 Bayern Munich Home Jersey', img: 'img4/b3dd3358.jpg', img2: 'peitas3/euro3/bayer.jpg', img3: 'peitas3/euro3/bayer2.jpg', price: 'R$129,90' },
+      { name: '2025/26 Newcastle United Home Jersey', img: 'img4/b8d97462.jpg', img2: 'peitas3/euro3/new.jpg', img3: 'peitas3/euro3/new2.jpg', price: 'R$129,90' },
+      { name: '2025/26 Paris Saint-Germain Home Jersey ', img: 'img4/00111c61.jpg', img2: 'peitas3/euro3/psg.jpg', img3: 'peitas3/euro3/psg2.jpg', price: 'R$129,90' },
+      { name: '2026/27 Borussia Dortmund Home Jersey', img: 'img4/5f48d2da.jpg', img2: 'peitas3/euro3/boru.jpg', img3: 'peitas3/euro3/boru2.jpg', price: 'R$129,90' },
+      { name: '2026/27 Inter Milan Home Jerseys', img: 'img4/2dac7503.png', img2: 'peitas3/euro3/inter.jpg', img3: 'peitas3/euro3/inter.png', price: 'R$129,90' },
+      { name: '2025/26 AC Milan Home Jersey', img: 'img4/ea187c78.jpg', img2: 'peitas3/euro3/millan.jpg', img3: 'peitas3/euro3/miilla2.jpg', price: 'R$129,90' },
+      { name: '2025/26 Napoli Home Jersey00', img: 'img4/e8223202.jpg', img2: 'peitas3/euro3/napoli.jpg', img3: 'peitas3/euro3/napoli2.jpg', price: 'R$129,90' },
+      { name: '2025/26 Miami Home', img: 'img4/a1ede8cd.jpg', img2: 'peitas3/euro3/miiami.jpg', img3: 'peitas3/euro3/mami2.jpg', price: 'R$129,90' },
+      { name: '2025/26 Orlando Home Jersey', img: 'img4/1cc8e523.jpg', img2: 'peitas3/euro3/orlando.jpg', img3: 'peitas3/euro3/orlado2.jpg', price: 'R$129,90' },
+      { name: '2025/26 Al-Nassr Home', img: 'img4/6cd13292.jpg', img2: 'peitas3/euro3/all na.jpg', img3: 'peitas3/euro3/all na2.jpg', price: 'R$129,90' },
+      { name: '2026/27 Aston Villa Home Jersey', img: 'img4/1115f82c.jpg', img2: 'peitas3/euro3/aston.jpg', img3: 'peitas3/euro3/aston2.jpg', price: 'R$129,90' },
+      { name: '2026/27 Benfica jerseys', img: 'img4/cf6e1214.jpg', img2: 'peitas3/euro3/bef.jpg', img3: 'peitas3/euro3/bef2.jpg', price: 'R$129,90' }
+    ],
+    libertadores: [
+      { name: '2025/26 Boca Juniors Home Jersey', img: 'img5/dab72805.jpg', img2: 'peitas 2/liberta2/boca.jpg', img3: 'peitas 2/liberta2/boca2.jpg', price: 'R$129,90' },
+      { name: '2026/27 River Plate Home Jerseys', img: 'img5/408c0b56.png', img2: 'peitas 2/liberta2/rvr.jpg', img3: 'peitas 2/liberta2/rvr2.png', price: 'R$129,90' },
+      { name: '2025/26 Peñarol Home Jersey', img: 'img5/e8eb910a.jpg', img2: 'peitas 2/liberta2/pena.jpg', img3: 'peitas 2/liberta2/pena2.jpg', price: 'R$129,90' }
+    ],
+    retro: [
+      { name: 'Retro 1990 Corinthians Away Jersey', img: 'img6/4ebd86ef.jpg', img2: 'peitas3/retro3/cori.jpg', img3: 'peitas3/retro3/cori2.jpg', price: 'R$169,90', description: 'Modelo histórico e icônico do Timão. Tecido em malha retrô super macia e confortável, escudo antigo bordado com fidelidade absoluta aos detalhes de 1990. Uma obra de arte para colecionadores.' },
+      { name: 'Retro 1996/97 Real Madrid Home Jersey', img: 'img6/cc.jpg', img2: 'peitas3/retro3/real retro.jpg', img3: 'peitas3/retro3/real retro2.jpg', price: 'R$169,90' },
+      { name: 'Retro Barcelona 2016/17 home jersey', img: 'img6/6ef027f4.jpg', img2: 'peitas3/retro3/retro bar.jpg', img3: 'peitas3/retro3/real retro2.jpg', price: 'R$169,90' },
+      { name: 'Retro 2000 Spain Home Jersey', img: 'img6/865c0c61.jpg', img2: 'peitas3/retro3/espana.jpg', img3: 'peitas3/retro3/espana2.jpg', price: 'R$169,90' },
+      { name: 'Retro 1994 São Paulo Home Cotton Jersey', img: 'img6/2e5d5503.jpg', img2: 'peitas3/retro3/sp.jpg', img3: 'peitas3/retro3/sp2.jpg', price: 'R$169,90' },
+      { name: 'Retro 1994/95 Palmeiras home jersey', img: 'img6/0ffa1763.jpg', img2: 'peitas3/retro3/pal.jpg', img3: 'peitas3/retro3/pal2.jpg', price: 'R$169,90' },
+      { name: 'Retro Flamengo 2010 Home', img: 'img6/76d0b052.jpg', img2: 'peitas3/retro3/fla retro.jpg', img3: 'peitas3/retro3/fla retro2.jpg', price: 'R$169,90' },
+      { name: 'Retro M-U2007/08 away', img: 'img6/455d8a70.jpg', img2: 'peitas3/retro3/unte re.jpg', img3: 'peitas3/retro3/unte re 2.jpg', price: 'R$169,90' },
+      { name: 'Retro 2012 Santos III Jersey', img: 'img6/aa5b0959.jpg', img2: 'peitas3/retro3/sanre.jpg', img3: 'peitas3/retro3/san re2.jpg', price: 'R$169,90' },
+      { name: 'Retro 2002 Brazil home ', img: 'img6/91279c27.jpg', img2: 'peitas3/retro3/brasa re.jpg', img3: 'peitas3/retro3/brasa re 2.jpg', price: 'R$169,90' }
+    ],
+    streetwear: [
+      { name: '22/23 Brazilian trench coat dark blue green yellow', img: 'img/d091099f.jpg', img2: 'peitas 2/streat2/brasil1.jpg', img3: 'peitas 2/streat2/brasl 2.jpg', price: 'R$224,90' },
+      { name: '21/22 Windbreaker Manchester City blue', img: 'img/c156e392.jpg', img2: 'peitas 2/streat2/city.jpg', img3: 'peitas 2/streat2/city2.jpg', price: 'R$224,90' },
+      { name: '2024/25 Argentina double-faced windbreaker', img: 'img/302fd286.jpg', img2: 'peitas 2/streat2/argetina.jpg', img3: 'peitas 2/streat2/argentina2.jpg', price: 'R$224,90' },
+      { name: '2022 Flamengo Windbreaker Black Red & White Edge', img: 'img/42010636.jpeg', img2: 'peitas 2/streat2/fla.jpeg', img3: 'peitas 2/streat2/fla2.jpg', price: 'R$224,90' },
+      { name: '2022 M-U Windbreaker red white edge', img: 'img/de902596.jpeg', img2: 'peitas 2/streat2/unite.jpeg', img3: 'peitas 2/streat2/unite2.jpg', price: 'R$224,90' },
+      { name: '2022 Italy Windbreaker White-Green', img: 'img/0dd3b02e.jpeg', img2: 'peitas 2/streat2/ita.jpeg', img3: 'peitas 2/streat2/ita2.jpg', price: 'R$224,90' },
+      { name: '21/22 Windbreaker Tottenham Blue and White', img: 'img/bc465f77.jpg', img2: 'peitas 2/streat2/tote.jpg', img3: 'peitas 2/streat2/tote2.jpg', price: 'R$224,90' },
+      { name: '21/22 Windbreaker Bayern White', img: 'img/5e51a9d6.jpg', img2: 'peitas 2/streat2/bayer2.jpg', img3: 'peitas 2/streat2/bayer.jpg', price: 'R$224,90' },
+      { name: '20/21 Windbreaker Arsenal Red', img: 'img/fc5b67c0.jpeg', img2: 'peitas 2/streat2/arse.jpeg', img3: 'peitas 2/streat2/arse2.jpeg', price: 'R$224,90' },
+      { name: '20/21 Windbreaker Real Madrid Black', img: 'img/a115ac3c.jpeg', img2: 'peitas 2/streat2/real blck.jpeg', img3: 'peitas 2/streat2/real blck2.jpeg', price: 'R$224,90' }
+    ],
+    tenis: [
+      { name: 'AD Adizero Adios Pro 4', img: 'tenis/adios 04.jpg', price: 'R$399,90' },
+      { name: 'AD Adizero Adios Pro 4', img: 'tenis/455e6bd6.jpg', price: 'R$399,90' },
+      { name: 'AD Adizero Adios Pro 4', img: 'tenis/adios 67.jpg', price: 'R$399,90' },
+      { name: 'AD Adizero Adios Pro 4', img: 'tenis/adios.jpg', price: 'R$399,90' },
+      { name: 'AD Adizero Adios Pro 4', img: 'tenis/adios2.jpg', price: 'R$399,90' },
+      { name: 'AD Adizero Adios Pro 4', img: 'tenis/adios02.jpg', price: 'R$399,90' }
+    ]
+  };
+
+  const wppSVG = `<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.106.546 4.087 1.5 5.814L0 24l6.335-1.484A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.797 9.797 0 01-5.031-1.388l-.361-.214-3.741.876.935-3.63-.235-.373A9.79 9.79 0 012.182 12C2.182 6.58 6.58 2.182 12 2.182S21.818 6.58 21.818 12 17.42 21.818 12 21.818z"/></svg>`;
+
+  // Variável para armazenar o produto ativo que está aberto no Modal
+  let currentModalProduct = null;
+  let currentModalIsShoe = false;
+
+  function openProductModal(product, isShoe = false, category = '') {
+    if (!product.name) return;
+    currentModalProduct = product;
+    currentModalIsShoe = isShoe;
+
+    document.getElementById('modalTitle').textContent = product.name;
+    document.getElementById('modalPrice').textContent = product.price || 'R$129,90';
+
+    const defaultDesc = `Edição exclusiva da Coleção Imperial. Desenvolvida com costuras reforçadas e tecido selecionado de alta durabilidade e conforto superior. Caimento perfeito no corpo, ideal tanto para o uso casual quanto para demonstrar sua paixão com o máximo estilo.`;
+    document.getElementById('modalDescription').textContent = product.description || defaultDesc;
+
+    const mainImg = document.getElementById('modalMainImg');
+    mainImg.src = product.img || '';
+    mainImg.style.transform = 'scale(1)';
+
+    const thumbsContainer = document.getElementById('modalThumbsContainer');
+    thumbsContainer.innerHTML = '';
+
+    const images = [product.img, product.img2, product.img3].filter(url => url && url.trim() !== '');
+    images.forEach((url, index) => {
+      const thumb = document.createElement('div');
+      thumb.className = `modal-thumb ${index === 0 ? 'active' : ''}`;
+      thumb.innerHTML = `<img src="${url}" alt="Miniatura">`;
+      thumb.onclick = (e) => {
+        e.stopPropagation();
+        mainImg.src = url;
+        mainImg.style.transform = 'scale(1)';
+        document.querySelectorAll('.modal-thumb').forEach(t => t.classList.remove('active'));
+        thumb.classList.add('active');
+      };
+      thumbsContainer.appendChild(thumb);
+    });
+
+    const dynamicOptions = document.getElementById('modalDynamicOptions');
+    dynamicOptions.innerHTML = '';
+
+    if (isShoe) {
+      dynamicOptions.innerHTML = `
+        <div class="size-label">Numeração</div>
+        <div class="num-options">
+          ${SHOE_SIZES.map(s => `<button class="num-btn" onclick="selectSize(this, '${product.name}', true)">${s}</button>`).join('')}
+        </div>
+      `;
+    } else {
+      const showCustom = (category !== 'retro' && category !== 'streetwear');
+      let customHTML = '';
+      if (showCustom) {
+        customHTML = `
+          <div class="custom-label">Personalizar? (+ R$ 40,00)</div>
+          <select class="custom-select" onchange="toggleCustomization(this, '${product.name}', true)">
+            <option value="nao">Não</option>
+            <option value="sim">Sim</option>
+          </select>
+          <div class="custom-inputs" style="display: none;">
+            <input type="text" placeholder="Nome" class="custom-name" oninput="updateModalWppBtnText()">
+            <input type="text" placeholder="Número" class="custom-number" oninput="updateModalWppBtnText()">
+          </div>
+        `;
+      }
+      dynamicOptions.innerHTML = `
+        <div class="size-label">Tamanho</div>
+        <div class="size-options">
+          ${SHIRT_SIZES.map(s => `<button class="size-btn" onclick="selectSize(this, '${product.name}', false)">${s}</button>`).join('')}
+        </div>
+        ${customHTML}
+      `;
+    }
+
+    document.getElementById('productModal').classList.add('active');
+    updateModalWppBtnText();
+  }
+
+  function selectSize(btn, productName, isShoe = false) {
+    const parent = btn.parentElement;
+    parent.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    if (parent.closest('#productModal')) {
+      updateModalWppBtnText();
+    } else {
+      updateProductWppLink(parent.closest('.product-info'), productName, isShoe);
+    }
+  }
+
+  // ─── ATUALIZAÇÃO SIMULTÂNEA DE PREÇO (NOVA FUNÇÃO) ──────────────────────
+  function updateProductPriceAndWpp(element, basePriceText, productName, isModal = false) {
+    const container = isModal ? document.getElementById('productModal') : element.closest('.product-info');
+    if (!container) return;
+
+    const customSelect = container.querySelector('.custom-select');
+    const priceElement = isModal ? container.querySelector('.modal-price') : container.querySelector('.product-price-card');
+    
+    if (!priceElement) return;
+
+    let basePrice = parseFloat(basePriceText.replace('R$', '').replace('.', '').replace(',', '.').trim());
+    
+    if (customSelect && customSelect.value === 'sim') {
+      basePrice += 40.00;
+    }
+
+    const updatedPriceText = basePrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    priceElement.textContent = updatedPriceText;
+
+    if (isModal) {
+      updateModalWppBtnText();
+    } else {
+      updateProductWppLink(container, productName, false);
+    }
+  }
+
+  function toggleCustomization(selectEl, productName, isModal = false) {
+    const container = isModal ? document.getElementById('productModal') : selectEl.closest('.product-info');
+    const inputsWrap = container.querySelector('.custom-inputs');
+    
+    if (selectEl.value === 'sim') {
+      inputsWrap.style.display = 'flex';
+    } else {
+      inputsWrap.style.display = 'none';
+      container.querySelector('.custom-name').value = '';
+      container.querySelector('.custom-number').value = '';
+    }
+
+    let basePriceText = 'R$129,90';
+    for (const cat in PRODUCTS) {
+      const p = PRODUCTS[cat].find(item => item.name === productName);
+      if (p && p.price) { basePriceText = p.price; break; }
+    }
+
+    updateProductPriceAndWpp(selectEl, basePriceText, productName, isModal);
+  }
+
+  const modalMainImg = document.getElementById('modalMainImg');
+  const zoomContainer = document.getElementById('modalZoomContainer');
+
+  zoomContainer.addEventListener('mousemove', (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const xPercent = (x / rect.width) * 100;
+    const yPercent = (y / rect.height) * 100;
+    modalMainImg.style.transformOrigin = `${xPercent}% ${yPercent}%`;
+    modalMainImg.style.transform = 'scale(2.2)';
+  });
+
+  zoomContainer.addEventListener('mouseleave', () => {
+    modalMainImg.style.transform = 'scale(1)';
+    modalMainImg.style.transformOrigin = 'center center';
+  });
+
+  function closeModal(event) {
+    if(event.target.id === 'productModal') {
+      document.getElementById('productModal').classList.remove('active');
+    }
+  }
+
+  // ─── CRIAR CARDS DOS PRODUTOS ──────────────────────────────────────────────
+  function createShirtCard(product, category) {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.onclick = () => openProductModal(product, false, category);
+
+    const imgContent = product.img ? `<img src="${product.img}" alt="${product.name || 'Camiseta'}" loading="lazy"/>` : `<div class="img-placeholder"><span class="icon">📸</span><span>Adicionar Foto</span></div>`;
+    const finalPrice = product.price || 'R$129,90';
+    const showCustom = (category !== 'retro' && category !== 'streetwear');
+    
+    let customHTML = '';
+    if (showCustom) {
+      customHTML = `
+        <div class="custom-label" onclick="event.stopPropagation()">Personalizar? (+ R$ 40,00)</div>
+        <select class="custom-select" onclick="event.stopPropagation()" onchange="toggleCustomization(this, '${product.name || 'Item'}', false)">
+          <option value="nao">Não</option>
+          <option value="sim">Sim</option>
+        </select>
+        <div class="custom-inputs" style="display: none;" onclick="event.stopPropagation()">
+          <input type="text" placeholder="Nome" class="custom-name" oninput="updateProductWppLink(this.closest('.product-info'), '${product.name || 'Item'}', false)">
+          <input type="text" placeholder="Número" class="custom-number" oninput="updateProductWppLink(this.closest('.product-info'), '${product.name || 'Item'}', false)">
+        </div>
+      `;
+    }
+
+    card.innerHTML = `
+      <div class="product-img-wrap">${imgContent}</div>
+      <div class="product-info">
+        <div class="product-name">${product.name || 'Sem nome'}</div>
+        <div class="product-price-card">${finalPrice}</div>
+        <div class="size-label">Tamanho</div>
+        <div class="size-options" onclick="event.stopPropagation()">
+          ${SHIRT_SIZES.map(s => `<button class="size-btn" onclick="selectSize(this, '${product.name || 'item'}')">${s}</button>`).join('')}
+        </div>
+        ${customHTML}
+        <a href="https://wa.me/${WPP_NUMBER}?text=${encodeURIComponent(`Olá! Tenho interesse na camiseta: ${product.name || 'Item'}\nValor: ${finalPrice}`)}" target="_blank" class="wpp-btn" onclick="event.stopPropagation()">${wppSVG} Pedir pelo WhatsApp</a>
+      </div>`;
+    return card;
+  }
+
+  function createShoeCard(product, index) {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.onclick = () => openProductModal(product, true);
+
+    const imgContent = product.img ? `<img src="${product.img}" alt="${product.name || 'Tênis'}" loading="lazy"/>` : `<div class="img-placeholder"><span class="icon">📸</span><span>Adicionar Foto</span></div>`;
+    const finalPrice = product.price || 'R$349,90';
+
+    card.innerHTML = `
+      <div class="product-img-wrap">${imgContent}</div>
+      <div class="product-info">
+        <div class="product-name">${product.name || 'Sem nome'}</div>
+        <div class="product-price-card">${finalPrice}</div>
+        <div class="size-label">Numeração</div>
+        <div class="num-options" onclick="event.stopPropagation()">
+          ${SHOE_SIZES.map(s => `<button class="num-btn" onclick="selectSize(this, '${product.name || 'item'}', true)">${s}</button>`).join('')}
+        </div>
+        <a href="https://wa.me/${WPP_NUMBER}?text=${encodeURIComponent(`Olá! Tenho interesse no tênis: ${product.name || 'Item'}\nValor: ${finalPrice}`)}" target="_blank" class="wpp-btn" onclick="event.stopPropagation()">${wppSVG} Pedir pelo WhatsApp</a>
+      </div>`;
+    return card;
+  }
+
+  function updateProductWppLink(info, productName, isShoe = false) {
+    const activeBtn = info.querySelector('.size-btn.active, .num-btn.active');
+    const size = activeBtn ? activeBtn.textContent : '';
+    const typeLabel = isShoe ? 'Tamanho/Número' : 'Tamanho';
+    const priceElement = info.querySelector('.product-price-card') || info.querySelector('.modal-price');
+    const priceText = priceElement ? priceElement.textContent : '';
+
+    let text = `Olá! Tenho interesse no produto: ${productName}`;
+    if (priceText) { text += `\nValor: ${priceText}`; }
+    if (size) { text += `\n${typeLabel}: ${size}`; }
+
+    const customSelect = info.querySelector('.custom-select');
+    if (customSelect && customSelect.value === 'sim') {
+      const nameInput = info.querySelector('.custom-name').value.trim();
+      const numInput = info.querySelector('.custom-number').value.trim();
+      text += `\nCustomização: Sim (+ R$ 40,00)`;
+      text += `\nNome: ${nameInput ? nameInput : '(Não preenchido)'}`;
+      text += `\nNúmero: ${numInput ? numInput : '(Não preenchido)'}`;
+    }
+
+    const wppBtn = info.querySelector('.wpp-btn');
+    if (wppBtn) {
+      wppBtn.href = `https://wa.me/${WPP_NUMBER}?text=${encodeURIComponent(text)}`;
+    }
+    return text;
+  }
+
+  function updateModalWppBtnText() {
+    if (!currentModalProduct) return;
+    const modal = document.getElementById('productModal');
+    const text = updateProductWppLink(modal, currentModalProduct.name, currentModalIsShoe);
+
+    const wppLink = document.getElementById('modalWppBtn');
+    if (wppLink) {
+      wppLink.innerHTML = `${wppSVG} Pedir pelo WhatsApp`;
+      wppLink.href = `https://wa.me/${WPP_NUMBER}?text=${encodeURIComponent(text)}`;
+    }
+  }
+
+  function populateGrid(gridId, products, type, category = '') {
+    const grid = document.getElementById(gridId);
+    if (!grid) return;
+    products.forEach((p, i) => {
+      grid.appendChild(type === 'shirt' ? createShirtCard(p, category) : createShoeCard(p, i));
+    });
+  }
+
+  populateGrid('grid-selecoes',     PRODUCTS.selecoes,     'shirt', 'selecoes');
+  populateGrid('grid-brasileirao',  PRODUCTS.brasileirao,  'shirt', 'brasileirao');
+  populateGrid('grid-europeus',     PRODUCTS.europeus,     'shirt', 'europeus');
+  populateGrid('grid-libertadores', PRODUCTS.libertadores, 'shirt', 'libertadores');
+  populateGrid('grid-retro',        PRODUCTS.retro,        'shirt', 'retro');
+  populateGrid('grid-streetwear',   PRODUCTS.streetwear,   'shirt', 'streetwear');
+  populateGrid('grid-tenis',        PRODUCTS.tenis,        'shoe');
+
+  function switchShirtCat(cat, currentTab) {
+    document.querySelectorAll('.product-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('cat-' + cat).classList.add('active');
+    if (currentTab) currentTab.classList.add('active');
+  }
+
+  window.addEventListener('scroll', () => {
+    const btn = document.getElementById('scrollTop');
+    if (window.scrollY > 400) btn.classList.add('visible');
+    else btn.classList.remove('visible');
+  });
+
+  document.getElementById('scrollTop').onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+</script>
+</body>
+</html>
